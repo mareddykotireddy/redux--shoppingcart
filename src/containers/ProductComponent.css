@@ -1,0 +1,21 @@
+.image {
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    background-color: gray;
+    border-radius: 50px;
+    width: 25%;
+    object-fit: contain;
+    /* width:50%;
+    height:100px;
+    object-fit: contain; */
+ 
+    border-radius: 5px;
+    padding: 10px;
+
+    text-transform: uppercase;
+    margin:10px 0px;
+    padding-bottom: 20px;
+
+}

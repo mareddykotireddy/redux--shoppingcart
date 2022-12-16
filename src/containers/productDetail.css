@@ -1,0 +1,10 @@
+.koti{
+    margin: 20px auto;
+    display: flex;
+    justify-content: space-around;
+    /* flex-wrap: wrap; */
+    /* background-color: gray; */
+    /* border-radius: 1000px; */
+    width: 80%;
+    object-fit: contain;
+}
