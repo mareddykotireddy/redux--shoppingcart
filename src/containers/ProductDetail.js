@@ -1,27 +1,28 @@
 import React, { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import axios from "axios"
+//import axios from"axios"
 import { useDispatch, useSelector } from 'react-redux';
-import { selectedProduct, removeSelectedProduct } from '../redux/actions/productActions'
+import { addToCart, fetchProduct, removeSelectedProduct } from '../redux/actions/productActions'
 import "./productDetail.css"
+//import Cart from "./Cart"
+//import {addToCart} from "./redux/productReducer"
 
 const ProductDetails = () => {
     const product = useSelector((state) => state.product);
     const { image, title, price, category, description } = product
 
     const { productId } = useParams();
-    console.log(productId)
     const dispatch = useDispatch();
     console.log(product)
-    const fetchProductDetail = async () => {
-        const response = await axios.get(`https://fakestoreapi.com/products/${productId}`)
-            .catch((err) => {
-                console.log("Err", err);
-            });
-        dispatch(selectedProduct(response.data));
-    };
+    // const fetchProductDetail= async()=>{
+    // const response =await axios.get(`https://fakestoreapi.com/products/${productId}`)
+    // .catch((err)=>{
+    // console.log("Err",err);
+    // });
+    // dispatch(selectedProduct(response.data));
+    // };
     useEffect(() => {
-        if (productId && productId !== "") fetchProductDetail();
+        if (productId && productId !== "") dispatch(fetchProduct(productId));
         return () => {
             dispatch(removeSelectedProduct())
         }
@@ -31,7 +32,7 @@ const ProductDetails = () => {
             {Object.keys(product).length === 0 ? (
                 <div>...Loading</div>
             ) : (
-                <div className='koti'>
+                <div className='product'>
                     <div className='ui two column stackable center aligned grid'>
                         <div className='ui vertical divider'>AND</div>
                         <div className='middle aligned row'>
@@ -46,31 +47,24 @@ const ProductDetails = () => {
                                 <h3 className='ui brown block header'>{category}</h3>
                                 <p>{description}</p>
                                 <div className='ui vertical animated button' tabIndex="0">
-                                    {/* <div className='hidden content'> */}
-                                    <i className='shop icon'></i>
+                                    <div className='hidden content'>
+                                        <i className='shop icon'></i>
+                                    </div >
+                                    <div className='visible content'>
+                                        <button onClick={()=>dispatch(addToCart())}>Add TO Cart</button>
+                                        
+                                        </div>
                                 </div>
-                                <div>
-                                    {/* <button style={{backgroundColor:'#e67e22',marginTop:'5%'}}
-                                        onClick={()=>addToCart(productId)}
-                                        className='visible content'>Add to cart</button> */}
-
-                                    <div>
-                                        <button className='visible content' onClick={() => (product)}>Add to cart</button>
-                                    </div>
-
-                                </div>
-
                             </div>
                         </div>
-                        {/* </div> */}
                     </div>
 
                 </div>
+
             )}
+
+
         </div>
-
-
-
     )
 }
 

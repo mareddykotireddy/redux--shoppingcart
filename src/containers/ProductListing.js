@@ -1,5 +1,6 @@
 import React ,{useEffect}from 'react' 
 import { useSelector,useDispatch } from 'react-redux';
+import Badge from '../components/Badge';
 import {fetchProducts} from'../redux/actions/productActions'
 import ProductComponent from './ProductComponent';
 
@@ -22,6 +23,7 @@ console.log("products:",products)
 return (
     <div className="container"><br/><br/><br/><br/>
       <ProductComponent/>
+      <Badge/>
     </div>
   );
 }

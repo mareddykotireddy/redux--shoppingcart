@@ -8,6 +8,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+        
         <Header/>
         <Routes>
         <Route exact path="/" element={<ProductListing/>} />

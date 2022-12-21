@@ -3,15 +3,15 @@ import React from 'react'
 import { useState } from 'react';
 import { connect } from 'react-redux';
 import ProductDetails from '../containers/ProductDetail';
-import { AddProduct } from '../redux/actions/productActions';
+import { addToCart } from '../redux/actions/productActions';
 // import { RemoveProduct } from '../redux/actions/productActions';
 
-const Cart = ({ Products, AddProduct}) => {
+const Cart = ({ products, AddProduct}) => {
     const [item, setItem] = useState("");
     const submitHandler = async e => {
         e.preventDefault();
         if (item !== "") {
-            await AddProduct({ name: item });
+            await addToCart({ name: item });
             setItem("");
         }
         setItem("");
@@ -38,4 +38,4 @@ const mapStateToProps = (state) => ({
 })
 
 
-export default connect(mapStateToProps, { AddProduct })(Cart)
+export default connect(mapStateToProps, { addToCart })(Cart)
