@@ -2,7 +2,7 @@ import fakeStoreApi from "../../apis/fakeStoreApi";
 import { ActionTypes } from "../contants/action-types";
 export const fetchProducts = () => async (dispatch) => {
     const response = await fakeStoreApi.get("/products")
-
+//hear i am changing 
     dispatch({ type: ActionTypes.FETCH_PRODUCTS, payload: response.data })
 }
 
